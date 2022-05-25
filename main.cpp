@@ -60,7 +60,10 @@ public:
     void citire (std::istream &is) override {
         float x;
         int y;
-        is >> x >> y;
+        std::cout <<"\nIntroduceti lungimea: ";
+        is >> x;
+        std::cout <<"\nIntroduceti numarul de persoane: ";
+        is >> y;
         this -> setLungime(x);
         this -> setNrP(y);
     }
@@ -86,7 +89,10 @@ public:
     void citire (std::istream &is) override {
         float x;
         int y;
-        is >> x >> y;
+        std::cout <<"\nIntroduceti lungimea: ";
+        is >> x;
+        std::cout <<"\nIntroduceti numarul de persoane: ";
+        is >> y;
         this -> setLungime(x);
         this -> setNrP(y);
     }
@@ -109,18 +115,33 @@ public:
     explicit Monovolum(float lungime = 5, int nr_persoane = 6, bool nou = true): Autoturism(lungime, nr_persoane) {
         setVan(true);
         this -> nou = nou;
-    };
-    Monovolum(Monovolum &M)  : Autoturism(M) {
-        this -> setLungime(M.getLungime());
-        this -> setNrP(M.getNrP());
-        this -> setVan(M.getVan());
+    }
+    void setNou (bool valoare) {
+        nou = valoare;
+    }
+    bool getNou() const {
+        return this -> nou;
     }
     void citire (std::istream &is) override {
         float x;
         int y;
-        is >> x >> y;
+        bool valoaren;
+        std::cout <<"\nIntroduceti lungimea: ";
+        is >> x;
+        std::cout <<"\nIntroduceti numarul de persoane: ";
+        is >> y;
+        std::cout <<"\nSpuneti daca masina este noua sau nu: ";
+        is >> valoaren;
+        std::cout <<"\n";
         this -> setLungime(x);
         this -> setNrP(y);
+        this -> setNou(valoaren);
+    }
+    Monovolum(Monovolum &M)  : Autoturism(M) {
+        this -> setLungime(M.getLungime());
+        this -> setNrP(M.getNrP());
+        this -> setVan(M.getVan());
+        this -> setNou(M.getNou());
     }
     void afisare(std::ostream &os) override {
         os << "Tip masina: Monovolum \n" << "Lungime: " << getLungime() << "\nNumar persoane: " << getNrP() << "\n"
